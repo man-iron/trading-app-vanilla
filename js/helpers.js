@@ -64,7 +64,7 @@
     for (var c = 0; c < columns.length; c += 1) {
       if (columns[c].key === columnKey) { type = columns[c].type; break; }
     }
-    var numeric = NUMERIC_TYPES[type] === true;
+    var numeric = NUMERIC_TYPES[columnKey] === true;
     var sign = direction === 'desc' ? -1 : 1;
 
     // decorate with the original index to keep the sort stable everywhere
@@ -123,8 +123,7 @@
       }
       // malformed or plain text -> substring on the raw value
     }
-    return String(value == null ? '' : value).toLowerCase()
-      .indexOf(filter.text.toLowerCase()) !== -1;
+    return value.toLowerCase().indexOf(filter.text.toLowerCase()) !== -1;
   }
 
   /** Format one cell for display, by column type. */

@@ -36,7 +36,7 @@
       if (!node) return;
 
       if (node.type === 'group') {
-        var expanded = this.store.state.expandedIds.slice();
+        var expanded = this.store.state.expandedIds;
         var at = expanded.indexOf(node.id);
         if (at === -1) expanded.push(node.id); else expanded.splice(at, 1);
         this.store.setState({ expandedIds: expanded });

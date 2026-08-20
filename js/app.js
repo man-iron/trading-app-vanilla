@@ -5,7 +5,7 @@
 (function (NS) {
   'use strict';
 
-  var data = NS.data;
+  data = NS.data;
   var helpers = NS.helpers;
 
   var store = new NS.Store({

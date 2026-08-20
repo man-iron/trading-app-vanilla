@@ -20,7 +20,6 @@
       this.columns = null;
       this.timer = null;
       this.paused = false;
-      this.tick = this.tick.bind(this);
     }
 
     /** Start ticking a report (stops any previous one). */

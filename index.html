@@ -25,6 +25,11 @@
       <aside class="app__sidebar">
         <div class="panel">
           <div class="panel__header">MARKETS NAVIGATOR<span class="panel__cursor" aria-hidden="true"></span></div>
+          <div class="menu__toolbar" role="group" aria-label="Filter reports by transport">
+            <button class="menu__filter-btn" id="filter-live" type="button" data-transport="live">&#9679; LIVE</button>
+            <button class="menu__filter-btn" id="filter-eod" type="button" data-transport="eod">EOD</button>
+            <button class="menu__filter-btn menu__filter-btn--active" id="filter-all" type="button" data-transport="all">ALL</button>
+          </div>
           <nav id="tree-menu" aria-label="Markets navigator"></nav>
         </div>
       </aside>

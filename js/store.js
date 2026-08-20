@@ -26,15 +26,23 @@
       };
     }
 
-    /** Shallow-merge a patch, then notify every listener with (state, patch). */
+    /** Shallow-merge a patch, then notify every listener with (state, changes).
+     *  Keys whose value did not actually change are dropped from the
+     *  notification so listeners don't re-render needlessly. */
     setState(patch) {
       var next = {};
       var key;
+      var changes = {};
       for (key in this.state) next[key] = this.state[key];
-      for (key in patch) next[key] = patch[key];
+      for (key in patch) {
+        if (next[key] !== patch[key]) {
+          next[key] = patch[key];
+          changes[key] = patch[key];
+        }
+      }
       this.state = next; // new object on purpose — reference equality works
       for (var i = 0; i < this.listeners.length; i += 1) {
-        this.listeners[i](this.state, patch);
+        this.listeners[i](this.state, changes);
       }
     }
   }

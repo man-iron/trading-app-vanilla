@@ -35,6 +35,37 @@
 
 .menu__label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* transport filter toolbar */
+
+.menu__toolbar {
+  display: none; /* revealed once the navigator has data */
+  gap: 6px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu__filter-btn {
+  flex: none;
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.menu__filter-btn:hover { color: var(--text); border-color: var(--text-dim); }
+
+.menu__filter-btn--active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#filter-live { color: var(--up); }
+
 /* transport badges */
 
 .menu__badge {

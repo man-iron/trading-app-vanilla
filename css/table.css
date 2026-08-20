@@ -24,6 +24,7 @@
 .report__spacer { flex: 1; }
 
 .report__status {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -38,6 +39,21 @@
   height: 7px;
   border-radius: 50%;
   background: var(--text-dim);
+}
+
+/* soft halo around the transport dot */
+.report__status::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--up);
+  box-shadow: 0 0 5px rgba(0, 200, 5, 0.55);
+  animation: pulse 1.4s ease-in-out infinite;
 }
 
 .report__status--live::before   { background: var(--up); animation: pulse 1.4s ease-in-out infinite; }
@@ -73,7 +89,7 @@
   position: sticky;
   top: 0;
   z-index: 2;               /* stays above flashing body cells */
-  background: var(--panel-raised);
+  background: rgba(28, 33, 41, 0.72);
   color: var(--text-dim);
   font-weight: normal;
   font-size: 11px;
