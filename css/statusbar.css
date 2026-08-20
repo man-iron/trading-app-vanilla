@@ -1,0 +1,32 @@
+/* ==========================================================================
+   statusbar.css — StatusBar module (bottom strip)
+   ========================================================================== */
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 28px;
+  padding: 0 12px;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 11px;
+}
+
+.statusbar__section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statusbar__name { color: var(--accent); }
+.statusbar__sep  { color: var(--text-dim); }
+.statusbar__label { color: var(--text-dim); letter-spacing: 1px; }
+.statusbar__report { color: var(--text); letter-spacing: 1px; }
+.statusbar__placeholder { color: var(--text-dim); }
+.statusbar__clock { color: var(--up); letter-spacing: 1px; }

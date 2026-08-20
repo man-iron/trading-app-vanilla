@@ -1,0 +1,134 @@
+/* ==========================================================================
+   table.css — ReportTable module (grid, sticky header, filters, tick flash)
+   ========================================================================== */
+
+.report {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.report__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.report__title { margin: 0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+.report__asof  { color: var(--text-dim); font-size: 11px; }
+.report__spacer { flex: 1; }
+
+.report__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.report__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-dim);
+}
+
+.report__status--live::before   { background: var(--up); animation: pulse 1.4s ease-in-out infinite; }
+.report__status--paused::before { background: var(--accent); }
+.report__status--eod::before    { background: var(--text-dim); }
+
+.report__pause {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.report__pause:hover { border-color: var(--accent); color: var(--accent); }
+
+.report__body { flex: 1; min-height: 0; overflow: auto; }
+
+/* ---- grid ---- */
+
+.grid { width: 100%; border-collapse: collapse; }
+
+.grid th, .grid td {
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.grid th {
+  position: sticky;
+  top: 0;
+  z-index: 2;               /* stays above flashing body cells */
+  background: var(--panel-raised);
+  color: var(--text-dim);
+  font-weight: normal;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+}
+
+.grid th:hover { color: var(--text); }
+
+.grid th .grid__arrow { color: var(--accent); margin-left: 4px; }
+
+/* filter row sits just under the sticky header */
+.grid .grid__filter-cell {
+  position: sticky;
+  top: 25px;
+  z-index: 2;
+  background: var(--panel);
+  padding: 2px 6px;
+  cursor: default;
+}
+
+.grid__filter {
+  width: 100%;
+  min-width: 60px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+.grid__filter:focus { outline: none; border-color: var(--accent); }
+
+.grid td { font-variant-numeric: tabular-nums; }
+
+.grid tr:hover td { background: var(--panel-raised); }
+
+.grid .num { text-align: right; }
+.grid .up   { color: var(--up); }
+.grid .down { color: var(--down); }
+
+/* tick flash — re-triggered from JS by re-adding the class */
+.grid td.flash { animation: cell-flash 1.2s ease-out; }
+
+@keyframes cell-flash {
+  0%   { background: rgba(255, 176, 0, 0.35); }
+  100% { background: transparent; }
+}
+
+.grid__footer {
+  padding: 4px 12px;
+  color: var(--text-dim);
+  font-size: 11px;
+  border-top: 1px solid var(--border);
+}
